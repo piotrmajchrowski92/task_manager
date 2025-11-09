@@ -1,81 +1,50 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <!-- Deklaracja typu dokumentu - HTML5 -->
     <meta charset="UTF-8">
-    <!-- Ustawienie kodowania znaków na UTF-8, aby obsługiwać polskie znaki (ą, ć, ę, ł, ń, ó, ś, ź, ż) -->
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Viewport zapewnia responsywność - aplikacja będzie się skalować na różnych urządzeniach (telefony, tablety, desktopy) -->
-    
     <title>Lista Zadań - ToDo App</title>
-    <!-- Tytuł wyświetlany na karcie przeglądarki -->
     
-    <!-- Materialize CSS - framework CSS oparty na Material Design -->
-    <!-- Ładujemy bibliotekę z CDN (Content Delivery Network) - nie trzeba pobierać lokalnie -->
+    <!-- Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!-- Google Material Icons - ikony Material Design używane w przyciskach i interfejsie -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
-    <!-- Nasze własne style CSS - dodatkowe stylowanie poza Materialize -->
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Główny kontener Materialize - centruje zawartość i zapewnia odpowiednie marginesy -->
     <div class="container">
-        <!-- System siatki Materialize - "row" to wiersz, w którym układamy kolumny -->
         <div class="row">
-            <!-- Kolumna: s12 = pełna szerokość na małych ekranach (small), 
-                 m8 = 8/12 szerokości na średnich ekranach (medium),
-                 offset-m2 = przesunięcie o 2 kolumny (czyli wyśrodkowanie: (12-8)/2 = 2) -->
             <div class="col s12 m8 offset-m2">
-                <!-- Nagłówek główny - wyśrodkowany tekst -->
                 <h1 class="center-align">Lista Zadań</h1>
                 
-                <!-- Karta Materialize - kontener z cieniem dla formularza -->
-                <!-- "card" to komponent Materialize, który daje ładny efekt wizualny z cieniem -->
+                <!-- Formularz dodawania zadania -->
                 <div class="card">
                     <div class="card-content">
-                        <!-- Tytuł karty -->
                         <span class="card-title">Dodaj nowe zadanie</span>
-                        
-                        <!-- Formularz dodawania/edycji zadania -->
-                        <!-- id="taskForm" - potrzebne do podpięcia event listenera w JavaScript -->
                         <form id="taskForm">
-                            <!-- Pole tekstowe Materialize - "input-field" zapewnia animowane labelki -->
                             <div class="input-field">
-                                <!-- Pole tytułu zadania - wymagane (required) -->
-                                <!-- class="validate" - Materialize automatycznie waliduje to pole -->
                                 <input id="taskTitle" type="text" class="validate" required>
-                                <!-- Label Materialize - automatycznie animuje się przy fokusie -->
                                 <label for="taskTitle">Tytuł zadania</label>
                             </div>
-                            
-                            <!-- Pole wykonawcy - opcjonalne (bez required) -->
                             <div class="input-field">
                                 <input id="taskAssignee" type="text" class="validate">
                                 <label for="taskAssignee">Wykonawca</label>
                             </div>
-                            
-                            <!-- Przycisk submit formularza -->
-                            <!-- "waves-effect waves-light" - efekt fali Material Design przy kliknięciu -->
                             <button class="btn waves-effect waves-light" type="submit">
                                 Dodaj zadanie
-                                <!-- Ikona Material Icons po prawej stronie -->
                                 <i class="material-icons right">add</i>
                             </button>
                         </form>
                     </div>
                 </div>
                 
-                <!-- Karta zawierająca listę wszystkich zadań -->
+                <!-- Lista zadań -->
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title">Zadania</span>
-                        <!-- Kontener, do którego JavaScript dynamicznie dodaje elementy zadań -->
-                        <!-- Pusty div - zawartość będzie generowana przez funkcję renderTasks() w app.js -->
                         <div id="tasksContainer">
-                            <!-- Zadania będą dodawane tutaj dynamicznie przez JavaScript -->
+                            <!-- Zadania będą dodawane tutaj dynamicznie -->
                         </div>
                     </div>
                 </div>
@@ -83,12 +52,10 @@
         </div>
     </div>
     
-    <!-- Materialize JavaScript - potrzebny do inicjalizacji komponentów (input fields, toast notifications) -->
-    <!-- Musi być załadowany PRZED naszym app.js, ponieważ app.js używa obiektu M (Materialize) -->
+    <!-- Materialize JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     
-    <!-- Nasz główny plik JavaScript z logiką aplikacji -->
-    <!-- Ładowany na końcu, aby mieć dostęp do wszystkich elementów DOM i bibliotek -->
+    <!-- App JS -->
     <script src="app.js"></script>
 </body>
 </html>
