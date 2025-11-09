@@ -1,12 +1,66 @@
+/**
+ * PLIK STYLI CSS - MINIMALNY, ZGODNIE Z WYMAGANIAMI
+ * 
+ * Zgodnie z wymaganiami: "Używaj jak najwięcej JavaScript a jak najmniej CSS"
+ * Ten plik zawiera tylko podstawowe style, które trudno zaimplementować w JavaScript
+ * (np. media queries, hover effects, transitions).
+ * 
+ * Większość stylowania jest wykonywana przez:
+ * 1. Materialize CSS (framework) - gotowe komponenty
+ * 2. JavaScript (inline styles) - dynamiczne style w zależności od stanu
+ */
+
+/**
+ * STYLOWANIE BODY
+ * 
+ * background-color: #f5f5f5 - jasnoszary kolor tła
+ * Jest to standardowy kolor tła Material Design dla lekkiego kontrastu z białymi kartami
+ * 
+ * padding: 20px 0 - odstęp od góry i dołu strony
+ * Zapewnia, że zawartość nie przykleja się do krawędzi przeglądarki
+ */
 body {
     background-color: #f5f5f5;
     padding: 20px 0;
 }
 
+/**
+ * STYLOWANIE KONTENERA
+ * 
+ * margin-top: 20px - dodatkowy odstęp od góry
+ * Uzupełnia padding body, aby uzyskać ładny odstęp od górnej krawędzi
+ */
 .container {
     margin-top: 20px;
 }
 
+/**
+ * STYLOWANIE POJEDYNCZEGO ZADANIA
+ * 
+ * .task-item to klasa dodawana do każdego zadania w funkcji createTaskElement()
+ * 
+ * padding: 15px - wewnętrzny odstęp (przestrzeń między ramką a zawartością)
+ * Zapewnia, że tekst i przyciski nie przyklejają się do krawędzi karty
+ * 
+ * margin-bottom: 10px - odstęp między zadaniami
+ * Zapewnia czytelność - zadania nie są zbyt blisko siebie
+ * 
+ * background-color: white - białe tło zadania
+ * Kontrastuje z szarym tłem body, tworząc efekt "karty"
+ * 
+ * border-radius: 4px - zaokrąglone rogi
+ * Współczesny, przyjazny wygląd zgodny z Material Design
+ * 
+ * box-shadow - cień wokół karty (efekt podniesienia)
+ * Material Design używa cieni do wskazania głębokości elementów
+ * Składnia: box-shadow: x-offset y-offset blur spread color
+ * Wiele cieni daje bardziej realistyczny efekt głębokości
+ * 
+ * transition: all 0.3s ease - płynne przejścia animacji
+ * Gdy zmienia się właściwość (np. box-shadow przy hover),
+ * zmiana następuje płynnie przez 0.3 sekundy z efektem "ease"
+ * (wolny start, szybki środek, wolny koniec)
+ */
 .task-item {
     padding: 15px;
     margin-bottom: 10px;
@@ -16,14 +70,60 @@ body {
     transition: all 0.3s ease;
 }
 
+/**
+ * EFEKT HOVER (najechanie myszką)
+ * 
+ * Gdy użytkownik najedzie myszką na zadanie, cień się zwiększa.
+ * To daje wizualną informację zwrotną, że element jest interaktywny.
+ * 
+ * Większy box-shadow tworzy wrażenie, że karta się "unosi"
+ * (zgodnie z Material Design - elementy reagują na interakcję użytkownika)
+ * 
+ * Dlaczego w CSS, a nie w JavaScript?
+ * - Hover to stan CSS, trudny do obsłużenia w JS (wymagałby mouseenter/mouseleave)
+ * - CSS hover jest bardziej wydajny (obsługiwany przez przeglądarkę)
+ * - To klasyczny przypadek użycia CSS
+ */
 .task-item:hover {
     box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.2);
 }
 
+/**
+ * STYLOWANIE ZAKOŃCZONYCH ZADAŃ
+ * 
+ * .task-item.completed - selektor CSS wybiera elementy,
+ * które mają OBIE klasy: 'task-item' ORAZ 'completed'
+ * 
+ * background-color: #f0f0f0 - bardzo jasnoszary kolor
+ * Wizualnie odróżnia zakończone zadania od aktywnych
+ * (aktywne mają białe tło, zakończone - szare)
+ * 
+ * Uwaga: Dodatkowe style (opacity, text-decoration) są ustawiane w JavaScript
+ * (w funkcji createTaskElement), zgodnie z wymaganiami "jak najmniej CSS"
+ */
 .task-item.completed {
     background-color: #f0f0f0;
 }
 
+/**
+ * MEDIA QUERY - RESPONSYWNOŚĆ
+ * 
+ * @media (max-width: 600px) - style wewnątrz zastosują się tylko,
+ * gdy szerokość ekranu jest mniejsza lub równa 600px
+ * (telefony i małe tablety)
+ * 
+ * .task-item .col - wybiera wszystkie kolumny wewnątrz zadania
+ * margin-bottom: 10px - dodaje odstęp między kolumnami na małych ekranach
+ * 
+ * Dlaczego to potrzebne?
+ * Na małych ekranach kolumny Materialize układają się jedna pod drugą
+ * (zamiast obok siebie). Bez marginesu kolumny byłyby zbyt blisko siebie.
+ * 
+ * Dlaczego w CSS, a nie w JavaScript?
+ * - Media queries to natywna funkcjonalność CSS
+ * - JavaScript musiałby słuchać zdarzenia resize i sprawdzać szerokość
+ * - CSS jest bardziej wydajny i semantyczny dla responsywności
+ */
 @media (max-width: 600px) {
     .task-item .col {
         margin-bottom: 10px;
